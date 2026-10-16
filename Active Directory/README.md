@@ -13,6 +13,7 @@ Deployed a Windows Server 2025 Domain Controller in an isolated virtual network 
 - Configured a static IPv4 address (10.10.10.10) for the Windows Server domain controller (DC01) and designated the local loopback for DNS resolution. 
 - Installed the Active Directory Domain Services (AD DS) onto the server.
 - Promoted the server to the primary Domain Controller for the new forest.
+  <img width="1031" height="668" alt="Review Options Screenshot" src="https://github.com/user-attachments/assets/86210d32-451e-4a43-9a8e-0f7b5eae115b" />
 - Provisioned an IT Department Organizational Unit (OU) within Active Directory and implemented role-based access control by adding a dedicated administrative user to the Domain Admins security group. This ensures daily administrative tasks are performed with a named account rather than the default built-in Administrator, and allows for the creation of separate, unprivileged accounts for daily use to enforce the Principle of Least Privilege (PoLP).  
 
 ## 4. Incident Response & Troubleshooting
