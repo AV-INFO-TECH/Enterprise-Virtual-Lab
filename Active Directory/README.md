@@ -26,8 +26,40 @@ Deployed a Windows Server 2025 Domain Controller in an isolated virtual network 
 - Linked a custom GPO specifically to the `Managers` OU, ensuring policies only affect the intended department tier without impacting standard representatives.
 - Utilized Group Policy Preferences (User Configuration > Windows Settings > Drive Maps) to dynamically mount the restricted `Management_Data` network share as an `M:` drive upon user login. 
 - Verified successful client-side policy updates (via `gpupdate /force`) and confirmed that standard users in adjacent OUs do not receive the mapped drive, proving proper policy scoping.
+  
+- To align with enterprise security best practices, I avoided logging directly into the Domain Controller for routine management. Instead, I configured the Windows 11 client as a Secure Admin Workstation using RSAT.
+- Installed Remote Server Administration Tools on the Windows 11 endpoint, utilizing the `LabAdmin` account to remotely manage Active Directory and Group Policy without exposing the server GUI.
+- Created and linked the `Lockdown Endpoint Settings` GPO specifically to the standard employee OUs.
+- Navigated `User Configuration > Policies > Administrative Templates > Control Panel` to enable the "Prohibit access to Control Panel and PC settings" directive.
 
-## 4. Incident Response & Troubleshooting
+<img width="1063" height="427" alt="Lockdown GPO" src="https://github.com/user-attachments/assets/18939319-684d-4e5d-aaea-9f29aff61c21" />
+
+- Verified that standard users attempting to modify system configurations are successfully blocked by a system administrator restriction prompt, ensuring endpoint compliance and reducing potential helpdesk tickets.
+- To establish a baseline defense against brute-force attacks and compromised credentials, I hardened the Active Directory domain authentication requirements. 
+- Modified the `Default Domain Policy` (Computer Configuration > Security Settings > Account Policies) to enforce a minimum password length of 12 characters and mandate complexity requirements.
+- Configured the Account Lockout Policy to automatically lock user accounts for 10 minutes after 5 consecutive invalid logon attempts.
+
+<img width="1066" height="395" alt="PW Policy" src="https://github.com/user-attachments/assets/d3561ab8-43db-42bc-b1db-5d4994ed89eb" />
+
+- Verified enforcement at the endpoint level by attempting a password change that violated the new entropy rules, successfully triggering the domain security block.
+
+<img width="652" height="286" alt="Failed PW" src="https://github.com/user-attachments/assets/cb085389-98fe-4d96-9e01-cb92aa6ff060" />
+
+- To streamline endpoint provisioning and ensure baseline software consistency across the domain, I configured an automated software deployment architecture using Group Policy.
+- Utilized remote Computer Management via RSAT to provision a dedicated, read-only network file share (`\\dc01\Software_Deploy`) to host enterprise MSI installers.
+- Created the `7-zip` policy linked at the domain level, utilizing `Computer Configuration > Software Settings` to assign the 64-bit 7-Zip MSI package via its UNC network path.
+  
+<img width="1067" height="496" alt="Software policy" src="https://github.com/user-attachments/assets/7dc3a6a2-3016-440c-8128-3df2f5361eef" />
+
+- Rebooted the Windows 11 endpoint and successfully verified the silent, zero-touch installation of the software prior to user authentication, demonstrating automated endpoint lifecycle management.
+
+## 4. Troubleshooting
 - **Issue:** VirtualBox unattended installation scripts created a partition conflict with the Windows Server 2025 ISO, resulting in a setup loop during the initial server build.
 - **Resolution:** Bypassed the graphical interface to access the command line, utilized the diskpart utility to wipe the corrupted virtual disk, and executed a manual OS installation.
+  
+- **Issue:** When configuring the Windows 11 client VM to use the isolated internal Active Directory network, the virtual machine inherently lost external internet connectivity. This prevented the download of necessary Windows Optional Features (specifically RSAT) from Microsoft's servers.
+- **The Resolution:** Maintained the primary Internal Network adapter (Adapter 1) to preserve domain communication, and enabled a secondary virtual Network Adapter (Adapter 2) configured for NAT to establish a bridge to the host's internet.
+
+- **Issue:** Identified an issue where Windows 11 Fast Logon optimizations bypassed synchronous network policy processing.
+- **Resolution:** Rectified this by enabling the "Always wait for the network at computer startup and logon" Administrative Template, successfully forcing the endpoint to retrieve the MSI payload prior to presenting the user login interface.
 
