@@ -60,6 +60,11 @@ Deployed a Windows Server 2025 Domain Controller in an isolated virtual network 
 - **Issue:** When configuring the Windows 11 client VM to use the isolated internal Active Directory network, the virtual machine inherently lost external internet connectivity. This prevented the download of necessary Windows Optional Features (specifically RSAT) from Microsoft's servers.
 - **The Resolution:** Maintained the primary Internal Network adapter (Adapter 1) to preserve domain communication, and enabled a secondary virtual Network Adapter (Adapter 2) configured for NAT to establish a bridge to the host's internet.
 
+- **The Issue:** When attempting to provision network shares on the Domain Controller (`DC01`) remotely from the Secure Admin Workstation (`Client01`), the connection was rejected. By design, Windows Server maintains a restricted attack surface by blocking incoming DCOM and RPC traffic required for remote Microsoft Management Console (MMC) snap-ins.
+
+<img width="403" height="293" alt="Screenshot 2026-10-17 131815" src="https://github.com/user-attachments/assets/9eb270f7-0513-416e-8f03-cc338d6c3874" />
+
+- **The Resolution:** Accessed Windows Defender Firewall with Advanced Security on the Domain Controller to explicitly permit secure administration traffic. Enabled the `COM+ Network Access (DCOM-In)` and `Remote Event Log Management` inbound rules to allow secure communication from the internal lab network. Successfully connected the remote Computer Management console from the Windows 11 endpoint to the server, allowing for the creation and permissioning of the `Software_Deploy` repository without requiring interactive server logon.
+
 - **Issue:** Identified an issue where Windows 11 Fast Logon optimizations bypassed synchronous network policy processing.
 - **Resolution:** Rectified this by enabling the "Always wait for the network at computer startup and logon" Administrative Template, successfully forcing the endpoint to retrieve the MSI payload prior to presenting the user login interface.
-
