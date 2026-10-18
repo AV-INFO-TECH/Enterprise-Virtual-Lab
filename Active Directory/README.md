@@ -61,6 +61,19 @@ Deployed a Windows Server 2025 Domain Controller in an isolated virtual network 
 
 - Rebooted the Windows 11 endpoint and successfully verified the silent, zero-touch installation of the software prior to user authentication.
 
+### DHCP Provisioning
+- Installed the DHCP Server role on the Domain Controller (`DC01`) to centralize IP address management and automate endpoint network configuration.
+- Authorized the DHCP server within Active Directory to enforce network security and prevent rogue DHCP servers from distributing unverified IP addresses.
+- Configured an IPv4 distribution scope (`10.10.10.100` - `10.10.10.200`) and defined server-level DHCP options, explicitly designating `10.10.10.10` as the primary DNS server to ensure seamless Active Directory authentication.
+
+<img width="393" height="368" alt="DHCP Scope - Copy" src="https://github.com/user-attachments/assets/868c28c0-bcf1-45c2-a49e-bcc7371ed7b6" />
+
+- Transitioned the Windows 11 client from a manual static network configuration to dynamic allocation.
+- Verified the successful assignment of a dynamic IP lease and correct DNS routing by executing `ipconfig /release` and `ipconfig /renew` on the endpoint via the command line.
+
+<img width="663" height="444" alt="DHCP Confirm" src="https://github.com/user-attachments/assets/38ba61eb-de57-489e-b051-6bfc4036791d" />
+
+
 ## 4. Troubleshooting
 - **Issue:** VirtualBox unattended installation scripts created a partition conflict with the Windows Server 2025 ISO, resulting in a setup loop during the initial server build.
 - **Resolution:** Bypassed the graphical interface to access the command line, utilized the diskpart utility to wipe the corrupted virtual disk, and executed a manual OS installation.
