@@ -37,3 +37,31 @@ This architecture allows centralized identity lifecycle management, enabling use
 
 <img width="458" height="795" alt="image" src="https://github.com/user-attachments/assets/ac0d322d-9353-4cc2-a310-5ab66abfaeaa" />
 
+### Device Registration Workflow
+- Configured Hybrid Azure AD Join for Windows 10/11 devices.
+- Verified the Service Connection Point (SCP) was written to the AD DS configuration partition.
+- Logged into the domain‑joined workstation (Client01) using a synchronized domain user.
+- The device automatically contacted Microsoft Entra ID and registered itself as Hybrid Joined Type.
+
+<img width="984" height="285" alt="image" src="https://github.com/user-attachments/assets/5530d06b-a9d5-42c5-a984-31032f0675c7" />
+
+### Device State Validation
+- On Client01, the following command was executed: (`dsregcmd /status`)
+- Output confirmed successful hybrid join:
+
+<img width="654" height="258" alt="image" src="https://github.com/user-attachments/assets/0980033f-f643-4a3b-9f5c-fae993a6b1aa" />
+
+### Seamless SSO & MFA Enrollment 
+- The SSO State section of dsregcmd /status showed:
+
+<img width="1095" height="260" alt="image" src="https://github.com/user-attachments/assets/4f36aab4-dccd-415f-a5d7-a85332be124d" />
+
+- Confirmed SSO State by using client01 browser to go to (`https://myaccount.microsoft.com`)
+- The user was automatically signed into account and prompted to configure Multi-Factor Authentication
+
+<img width="447" height="412" alt="image" src="https://github.com/user-attachments/assets/69f3bf2d-a1a1-4cbf-8a2a-f8557e35f1d1" />
+ 
+
+
+
+
