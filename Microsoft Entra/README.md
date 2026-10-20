@@ -1,4 +1,4 @@
-# Microsoft Entra ID Integration
+# Microsoft Entra ID & Intune Integration
 
 ## Executive Summary
 This phase transitions the isolated on-premises Active Directory Domain Services (AD DS) environment (`corp.local`) into a modern **Hybrid Identity** infrastructure. By provisioning an enterprise Microsoft 365 tenant and deploying **Microsoft Entra Connect Sync** on the primary Domain Controller (`DC01`), directory objects and password hashes are synchronized between on-premises and cloud environments. 
