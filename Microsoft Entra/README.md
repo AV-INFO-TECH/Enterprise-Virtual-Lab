@@ -72,7 +72,7 @@ This architecture allows centralized identity lifecycle management, enabling use
 <img width="1258" height="267" alt="image" src="https://github.com/user-attachments/assets/af2da995-964e-4e09-99e7-098305e0753b" />
 
 - Executed gpupdate /force on Client01 to pull the new policy
-- a personal laptop operating outside of the corp.local domain was utilized.
+- Personal laptop operating outside of the corp.local domain was utilized.
 - Accessed Settings > Accounts > Access work or school and signed in using the cloud-synced lab admin credentials.
 - The device authenticated with Microsoft Entra ID and successfully provisioned itself as Microsoft Entra registered (as opposed to Hybrid Joined).
 - Because the MDM user scope was active, Intune automatically hooked into the registration process, bringing the personal device under management while keeping personal and corporate data separated.
