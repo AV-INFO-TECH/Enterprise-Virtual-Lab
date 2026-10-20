@@ -33,7 +33,7 @@ This architecture allows centralized identity lifecycle management, enabling use
 <img width="1125" height="481" alt="Entra User verification" src="https://github.com/user-attachments/assets/8e8fa09f-2e92-447c-ab2b-bae6dc17bc95" />
 
 ### Provisioning a New User in Microsoft Entra ID
-- As part of managing identity and access, I provisioned a new internal user within Microsoft Entra ID. This process involved configuring the user's basic credentials, contact information, and organizational roles to ensure proper directory integration and access rights. 
+- As part of managing identity and access, I provisioned a new internal user within Microsoft Entra ID. This process involved configuring the user's basic credentials, contact information, and organizational roles to ensure proper directory integration and access rights. (Cloud Only User) 
 
 <img width="458" height="795" alt="image" src="https://github.com/user-attachments/assets/ac0d322d-9353-4cc2-a310-5ab66abfaeaa" />
 
