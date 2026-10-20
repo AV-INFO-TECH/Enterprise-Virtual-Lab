@@ -60,6 +60,45 @@ This architecture allows centralized identity lifecycle management, enabling use
 - The user was automatically signed into account and prompted to configure Multi-Factor Authentication
 
 <img width="447" height="412" alt="image" src="https://github.com/user-attachments/assets/69f3bf2d-a1a1-4cbf-8a2a-f8557e35f1d1" />
+
+### Microsoft Intune Integration 
+- Verified that the appropriate Microsoft 365 Business Premium licenses were assigned to the synced users to authorize MDM features.
+- Configured a Group Policy for on-premise domain joined workstations for auto MDM Enrollment
+
+<img width="1226" height="285" alt="Auto MDM Enroll" src="https://github.com/user-attachments/assets/208693a5-5270-4c4e-8631-ec716b09b903" />
+
+- Configured a Group Policy Object to the domain to register domain computers as devices
+
+<img width="1258" height="267" alt="image" src="https://github.com/user-attachments/assets/af2da995-964e-4e09-99e7-098305e0753b" />
+
+- Executed gpupdate /force on Client01 to pull the new policy
+- a personal laptop operating outside of the corp.local domain was utilized.
+- Accessed Settings > Accounts > Access work or school and signed in using the cloud-synced lab admin credentials.
+- The device authenticated with Microsoft Entra ID and successfully provisioned itself as Microsoft Entra registered (as opposed to Hybrid Joined).
+- Because the MDM user scope was active, Intune automatically hooked into the registration process, bringing the personal device under management while keeping personal and corporate data separated.
+- Confirmed both devices are registered and monitored via intune admin center 
+
+<img width="1444" height="335" alt="image" src="https://github.com/user-attachments/assets/b3a62975-3e81-4370-9b5f-fbe7381aa319" />
+
+### Endpoint Security & Device Compliance
+- Policy Creation: Navigated to the Microsoft Intune admin center > Devices > Compliance and created a new policy specifically for the Windows 10 and later platform
+- Configured the policy to require that windows firewall to be active 
+- Set the policy rules to mark devices as noncompliant immediately upon failing any evaluation check.
+- Deployed the baseline policy to all users
+
+<img width="787" height="677" alt="image" src="https://github.com/user-attachments/assets/1c99779e-7f75-49e8-a986-3be23dd0e707" />
+
+- Disabled firewall on client01 VM machine and performed a manual device sync to the AD
+- Verified Compliance on MS Entra and Intune 
+
+<img width="1508" height="311" alt="image" src="https://github.com/user-attachments/assets/665a7f9c-92bf-4188-8dbb-7996e2d6cf91" />
+<img width="1064" height="271" alt="image" src="https://github.com/user-attachments/assets/5938bc22-4b14-4375-b5e8-314b96f9bb72" />
+
+- Re-enabled firewall to restore compliance and verified with entra/intune admin portal 
+
+
+
+
  
 
 
