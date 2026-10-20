@@ -61,7 +61,7 @@ This architecture allows centralized identity lifecycle management, enabling use
 
 <img width="447" height="412" alt="image" src="https://github.com/user-attachments/assets/69f3bf2d-a1a1-4cbf-8a2a-f8557e35f1d1" />
 
-### Microsoft Intune Integration 
+## Microsoft Intune Integration 
 - Verified that the appropriate Microsoft 365 Business Premium licenses were assigned to the synced users to authorize MDM features.
 - Configured a Group Policy for on-premise domain joined workstations for auto MDM Enrollment
 
