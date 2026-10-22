@@ -15,7 +15,7 @@ Evolved a flat virtualized Active Directory lab into a segmented, enterprise-gra
 ### Firewall Deployment & Network Segmentation
 - Deployed a pfSense virtual appliance, provisioning three distinct virtual network interface cards (NICs) to establish independent broadcast domains.
 - Configured static IPv4 assignments via the pfSense CLI for the internal networks (`10.10.10.1` and `10.10.20.1`) to serve as default gateways for their respective subnets.
-- Renamed interfaces within the pfSense WebGUI (`dcnetwork` and `clientnetwork`) to align with enterprise documentation standards and improve rule management.
+- Changed default admin Credentials and Renamed interfaces within the pfSense WebGUI (`dcnetwork` and `clientnetwork`) to align with enterprise documentation standards and improve rule management.
 - Successfully migrated the Windows 11 client machine to the new physical endpoint network, physically isolating it from the Domain Controller.
 
 <img width="730" height="408" alt="Firewall interface" src="https://github.com/user-attachments/assets/2e7f0275-20f6-4c70-8b88-8d4ce97e88d2" />
