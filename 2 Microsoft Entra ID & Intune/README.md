@@ -19,7 +19,7 @@ This architecture allows centralized identity lifecycle management, enabling use
 ### Entra Connect Provisioning
 -   Downloaded and installed **Microsoft Entra Connect Sync** on the primary Domain Controller (`DC01`).
 -   Deployed using **Express Settings** to automatically configure Password Hash Synchronization (PHS), allowing users to maintain a single set of credentials.
--   Authenticated the connection between environments using the local Enterprise Admin (`CORP\Administrator`) and the cloud Global Admin (`AnthonyV@ITProject454.onmicrosoft.com`).
+-   Authenticated the connection between environments using the local Enterprise Admin (`CORP\Administrator`) and the cloud Global Admin (`******.onmicrosoft.com`).
 
 ### Synchronization Configuration
 -   Authorized synchronization for the non-routable on-premises domain (`corp.local`) by selecting "Continue without matching all UPN suffixes." Entra ID automatically maps these users to the default tenant routing domain (`@ITProject454.onmicrosoft.com`).
