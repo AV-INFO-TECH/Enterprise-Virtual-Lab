@@ -73,6 +73,15 @@ Deployed a Windows Server 2025 Domain Controller in an isolated virtual network 
 
 <img width="663" height="444" alt="DHCP Confirm" src="https://github.com/user-attachments/assets/38ba61eb-de57-489e-b051-6bfc4036791d" />
 
+### Active Directory Bulk User Provisioning
+- Developed a PowerShell automation script to create and onboard Active Directory users from a CSV file.
+- Automated user attribute assignment including department, title, employee ID, office location, and manager relationships.
+- Configured automated placement of user accounts into the appropriate Organizational Units (OUs) within Active Directory.
+- Implemented comprehensive logging to record successful account creations, skipped duplicate accounts, and provisioning errors.
+
+<img width="904" height="546" alt="image" src="https://github.com/user-attachments/assets/a2efca1b-2043-427a-a589-9866b9d0a22e" />
+ 
+
 
 ## 4. Troubleshooting
 - **Issue:** VirtualBox unattended installation scripts created a partition conflict with the Windows Server 2025 ISO, resulting in a setup loop during the initial server build.
